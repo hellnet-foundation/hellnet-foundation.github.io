@@ -6,8 +6,12 @@ on:
       - main
     paths:
       - "index.html"
+      - "assets/**"
       - "CNAME"
       - ".github/workflows/pages.yaml"
+  repository_dispatch:
+    types:
+      - project-docs-updated
   workflow_dispatch:
 
 permissions:
@@ -20,14 +24,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout docs hub
         uses: actions/checkout@v5
+        with:
+          path: docs-hub
+
+      - name: Checkout SOC AI Relay
+        uses: actions/checkout@v5
+        with:
+          repository: hellnet-foundation/soc-ai-relay
+          ref: main
+          path: projects/soc-ai-relay
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Install documentation dependencies
+        run: pip install mkdocs-material
+
+      - name: Build SOC AI Relay docs
+        working-directory: projects/soc-ai-relay
+        run: mkdocs build --strict --site-dir ../../site/soc-ai-relay
+
+      - name: Copy docs hub home page
+        run: |
+          cp docs-hub/index.html site/index.html
+          cp docs-hub/CNAME site/CNAME
+          if [ -d docs-hub/assets ]; then
+            cp -R docs-hub/assets site/assets
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -35,8 +65,16 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: site
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
