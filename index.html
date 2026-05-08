@@ -3,20 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hellnet Docs</title>
+    <title>Hellnet Docs — Failure is the protocol.</title>
     <meta
       name="description"
-      content="Documentation hub for Hellnet Foundation projects."
+      content="Hellnet docs: raw, minimal, dark, and built for failure-aware systems."
     />
     <style>
       :root {
         color-scheme: dark;
-        --bg: #0b1020;
-        --panel: #111827;
-        --text: #e5e7eb;
+        --bg: #05070d;
+        --panel: rgba(10, 14, 24, 0.82);
+        --panel-2: rgba(15, 21, 36, 0.92);
+        --text: #f3f4f6;
         --muted: #9ca3af;
-        --border: #273244;
-        --accent: #60a5fa;
+        --border: rgba(148, 163, 184, 0.18);
+        --accent: #7cfc98;
+        --accent-2: #6ee7ff;
+        --danger: #ff5d73;
       }
 
       * {
@@ -30,42 +33,116 @@
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(96, 165, 250, 0.14), transparent 34rem),
-          var(--bg);
+          radial-gradient(circle at 20% 10%, rgba(124, 252, 152, 0.12), transparent 24rem),
+          radial-gradient(circle at 80% 0%, rgba(110, 231, 255, 0.1), transparent 22rem),
+          linear-gradient(180deg, #070b12 0%, #05070d 100%);
         color: var(--text);
       }
 
       main {
-        width: min(960px, calc(100% - 2rem));
+        width: min(1120px, calc(100% - 2rem));
         margin: 0 auto;
-        padding: 5rem 0;
+        padding: 4rem 0 3rem;
+      }
+
+      .hero {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1.5fr 1fr;
+        align-items: end;
+        padding: 2rem;
+        background: linear-gradient(180deg, rgba(15, 21, 36, 0.88), rgba(10, 14, 24, 0.74));
+        border: 1px solid var(--border);
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(12px);
       }
 
       .eyebrow {
         margin: 0 0 1rem;
-        color: var(--accent);
+        color: var(--accent-2);
         font-size: 0.9rem;
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: fit-content;
+        margin-bottom: 1rem;
+        padding: 0.45rem 0.75rem;
+        color: var(--accent);
+        font-size: 0.8rem;
+        border: 1px solid rgba(124, 252, 152, 0.2);
+        border-radius: 999px;
+        background: rgba(124, 252, 152, 0.06);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
       h1 {
         margin: 0;
-        font-size: clamp(2.4rem, 8vw, 5rem);
-        line-height: 0.95;
+        font-size: clamp(2.6rem, 8vw, 5.6rem);
+        line-height: 0.92;
         letter-spacing: -0.06em;
       }
 
       .lead {
-        max-width: 680px;
+        max-width: 720px;
         margin: 1.5rem 0 3rem;
         color: var(--muted);
         font-size: 1.2rem;
         line-height: 1.7;
       }
 
+      .actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.1rem;
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid var(--border);
+        border-radius: 0.9rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .button.primary {
+        color: #04110a;
+        background: var(--accent);
+        border-color: transparent;
+        font-weight: 700;
+      }
+
+      .meta {
+        display: grid;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+      }
+
+      .meta strong {
+        font-size: 0.95rem;
+      }
+
+      .meta span {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
       .grid {
+        margin-top: 1.5rem;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 1rem;
@@ -76,13 +153,15 @@
         padding: 1.25rem;
         color: inherit;
         text-decoration: none;
-        background: rgba(17, 24, 39, 0.82);
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 1rem;
+        transition: transform 160ms ease, border-color 160ms ease;
       }
 
       .card:hover {
-        border-color: var(--accent);
+        transform: translateY(-2px);
+        border-color: rgba(124, 252, 152, 0.42);
       }
 
       .card h2 {
@@ -96,33 +175,87 @@
         line-height: 1.6;
       }
 
+      .section-title {
+        margin: 2.5rem 0 1rem;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
       footer {
         margin-top: 4rem;
         color: var(--muted);
         font-size: 0.9rem;
       }
+
+      @media (max-width: 820px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
     <main>
-      <p class="eyebrow">Hellnet Foundation</p>
-      <h1>Documentation</h1>
-      <p class="lead">
-        Central documentation hub for Hellnet projects, labs, services, and
-        internal platform tooling.
-      </p>
+      <section class="hero" aria-label="Hero">
+        <div>
+          <p class="kicker">Failure is the protocol.</p>
+          <p class="eyebrow">Hellnet Foundation</p>
+          <h1>Docs sem hype. Só sistema, ruído e verdade.</h1>
+          <p class="lead">
+            Base oficial da Hellnet para guias, conceitos e referências.
+            Escuro, direto e feito para ambientes que quebram antes de fingir que estão prontos.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://discord.gg/k34euRSytW">Entrar no Discord</a>
+            <a class="button" href="#docs">Ver docs</a>
+          </div>
+        </div>
 
+        <aside class="meta">
+          <strong>Status</strong>
+          <span>GitHub Pages + domínio customizado + deploy automático.</span>
+          <strong>Visual</strong>
+          <span>Dark, clean, brutalista leve, com acento neon.</span>
+          <strong>Tom</strong>
+          <span>Crú, técnico, anti-hype.</span>
+        </aside>
+      </section>
+
+      <p class="section-title" id="docs">Docs iniciais</p>
+      <section class="grid" aria-label="Documentation sections">
+        <a class="card" href="#">
+          <h2>Comece aqui</h2>
+          <p>O que é a Hellnet, para quem é e como navegar.</p>
+        </a>
+        <a class="card" href="#">
+          <h2>Princípios</h2>
+          <p>Falha, descentralização, anonimato, resistência e estética do erro.</p>
+        </a>
+        <a class="card" href="#">
+          <h2>Guia técnico</h2>
+          <p>Instalação, arquitetura, boas práticas e fluxo de uso.</p>
+        </a>
+        <a class="card" href="#">
+          <h2>Comunidade</h2>
+          <p>Links, canais, participação e regras mínimas de convivência.</p>
+        </a>
+      </section>
+
+      <p class="section-title">Projetos</p>
       <section class="grid" aria-label="Projects">
-        <a class="card" href="/soc-ai-relay/">
+        <div class="card">
           <h2>SOC AI Relay</h2>
           <p>
             DFIR-IRIS alert summarization using Ollama and Discord notifications.
           </p>
-        </a>
+        </div>
       </section>
 
       <footer>
-        docs.hellnet.com.br
+        docs.hellnet.com.br · Hellnet Foundation
       </footer>
     </main>
   </body>
