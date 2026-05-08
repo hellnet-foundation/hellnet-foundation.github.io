@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hellnet Docs</title>
+    <meta
+      name="description"
+      content="Documentation hub for Hellnet Foundation projects."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1020;
+        --panel: #111827;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #273244;
+        --accent: #60a5fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(96, 165, 250, 0.14), transparent 34rem),
+          var(--bg);
+        color: var(--text);
+      }
+
+      main {
+        width: min(960px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 5rem 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 8vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .lead {
+        max-width: 680px;
+        margin: 1.5rem 0 3rem;
+        color: var(--muted);
+        font-size: 1.2rem;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        display: block;
+        padding: 1.25rem;
+        color: inherit;
+        text-decoration: none;
+        background: rgba(17, 24, 39, 0.82);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+      }
+
+      .card:hover {
+        border-color: var(--accent);
+      }
+
+      .card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      footer {
+        margin-top: 4rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Hellnet Foundation</p>
+      <h1>Documentation</h1>
+      <p class="lead">
+        Central documentation hub for Hellnet projects, labs, services, and
+        internal platform tooling.
+      </p>
+
+      <section class="grid" aria-label="Projects">
+        <a class="card" href="/soc-ai-relay/">
+          <h2>SOC AI Relay</h2>
+          <p>
+            DFIR-IRIS alert summarization using Ollama and Discord notifications.
+          </p>
+        </a>
+      </section>
+
+      <footer>
+        docs.hellnet.com.br
+      </footer>
+    </main>
+  </body>
+</html>
