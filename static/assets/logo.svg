@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Hellnet logo">
+  <defs>
+    <radialGradient id="g1" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#ffe66d"/>
+      <stop offset="38%" stop-color="#ff4d2e"/>
+      <stop offset="70%" stop-color="#7a5cff"/>
+      <stop offset="100%" stop-color="#05070d"/>
+    </radialGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0.9"/>
+    </filter>
+  </defs>
+  <circle cx="256" cy="256" r="248" fill="url(#g1)"/>
+  <circle cx="256" cy="256" r="248" fill="rgba(0,0,0,0.14)" filter="url(#noise)" opacity="0.25"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+  <text x="256" y="279" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="800" letter-spacing="4" fill="#f3f4f6">HELLNET</text>
+</svg>
