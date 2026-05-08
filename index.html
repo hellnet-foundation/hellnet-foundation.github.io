@@ -141,49 +141,6 @@
         line-height: 1.6;
       }
 
-      .grid {
-        margin-top: 1.5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1rem;
-      }
-
-      .card {
-        display: block;
-        padding: 1.25rem;
-        color: inherit;
-        text-decoration: none;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        transition: transform 160ms ease, border-color 160ms ease;
-      }
-
-      .card:hover {
-        transform: translateY(-2px);
-        border-color: rgba(124, 252, 152, 0.42);
-      }
-
-      .card h2 {
-        margin: 0 0 0.5rem;
-        font-size: 1.1rem;
-      }
-
-      .card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-
-      .section-title {
-        margin: 2.5rem 0 1rem;
-        color: var(--text);
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
       footer {
         margin-top: 4rem;
         color: var(--muted);
@@ -203,59 +160,29 @@
         <div>
           <p class="kicker">Failure is the protocol.</p>
           <p class="eyebrow">Hellnet Foundation</p>
-          <h1>Docs sem hype. Só sistema, ruído e verdade.</h1>
+          <h1>Docs da Hellnet.</h1>
           <p class="lead">
-            Base oficial da Hellnet para guias, conceitos e referências.
-            Escuro, direto e feito para ambientes que quebram antes de fingir que estão prontos.
+            Base oficial para guias, conceitos e referências da Hellnet.
+            Direto, escuro e sem enfeite.
           </p>
           <div class="actions">
             <a class="button primary" href="https://discord.gg/k34euRSytW">Entrar no Discord</a>
-            <a class="button" href="#docs">Ver docs</a>
+            <a class="button" href="#inicio">Começar</a>
           </div>
         </div>
 
         <aside class="meta">
           <strong>Status</strong>
-          <span>GitHub Pages + domínio customizado + deploy automático.</span>
+          <span>GitHub Pages + domínio customizado.</span>
           <strong>Visual</strong>
-          <span>Dark, clean, brutalista leve, com acento neon.</span>
+          <span>Dark, clean, com acento neon.</span>
           <strong>Tom</strong>
           <span>Crú, técnico, anti-hype.</span>
         </aside>
       </section>
 
-      <p class="section-title" id="docs">Docs iniciais</p>
-      <section class="grid" aria-label="Documentation sections">
-        <a class="card" href="#">
-          <h2>Comece aqui</h2>
-          <p>O que é a Hellnet, para quem é e como navegar.</p>
-        </a>
-        <a class="card" href="#">
-          <h2>Princípios</h2>
-          <p>Falha, descentralização, anonimato, resistência e estética do erro.</p>
-        </a>
-        <a class="card" href="#">
-          <h2>Guia técnico</h2>
-          <p>Instalação, arquitetura, boas práticas e fluxo de uso.</p>
-        </a>
-        <a class="card" href="#">
-          <h2>Comunidade</h2>
-          <p>Links, canais, participação e regras mínimas de convivência.</p>
-        </a>
-      </section>
-
-      <p class="section-title">Projetos</p>
-      <section class="grid" aria-label="Projects">
-        <div class="card">
-          <h2>SOC AI Relay</h2>
-          <p>
-            DFIR-IRIS alert summarization using Ollama and Discord notifications.
-          </p>
-        </div>
-      </section>
-
       <footer>
-        docs.hellnet.com.br · Hellnet Foundation
+        docs.hellnet.com.br
       </footer>
     </main>
   </body>
