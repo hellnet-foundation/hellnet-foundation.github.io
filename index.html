@@ -162,6 +162,58 @@
         object-fit: cover;
         box-shadow: 0 18px 40px rgba(255, 77, 46, 0.15);
         border: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+      }
+
+      .logo-wrap {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .logo-wrap::before,
+      .logo-wrap::after {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border-radius: 999px;
+        pointer-events: none;
+      }
+
+      .logo-wrap::before {
+        background: radial-gradient(circle, rgba(255, 77, 46, 0.22), transparent 65%);
+        filter: blur(10px);
+      }
+
+      .logo-wrap::after {
+        border: 1px solid rgba(255, 230, 109, 0.18);
+        box-shadow: 0 0 0 1px rgba(122, 92, 255, 0.14) inset;
+      }
+
+      .glitch {
+        position: relative;
+      }
+
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        opacity: 0.6;
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      .glitch::before {
+        transform: translate(1px, 0);
+        color: var(--accent);
+        clip-path: inset(0 0 55% 0);
+      }
+
+      .glitch::after {
+        transform: translate(-1px, 0);
+        color: var(--accent-2);
+        clip-path: inset(45% 0 0 0);
       }
 
       .mark {
@@ -207,9 +259,11 @@
       <section class="hero" aria-label="Hero">
         <div>
           <div class="brand">
-            <img class="logo" src="/assets/logo.svg" alt="Hellnet logo" />
+            <div class="logo-wrap">
+              <img class="logo" src="/assets/logo.svg" alt="Hellnet logo" />
+            </div>
             <div>
-              <div class="logo-text">Hellnet Foundation</div>
+              <div class="logo-text glitch" data-text="Hellnet Foundation">Hellnet Foundation</div>
               <p class="subtle">Documentation center for the company’s public repositories, guides, and release notes.</p>
             </div>
           </div>
@@ -239,5 +293,23 @@
         docs.hellnet.com.br
       </footer>
     </main>
+    <script>
+      const root = document.documentElement;
+      const title = document.querySelector('.glitch');
+
+      let t = 0;
+      function tick() {
+        t += 0.01;
+        const x = Math.sin(t) * 2;
+        const y = Math.cos(t * 1.3) * 1.5;
+        root.style.setProperty('--glitch-x', `${x}px`);
+        root.style.setProperty('--glitch-y', `${y}px`);
+        if (title) {
+          title.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    </script>
   </body>
 </html>
