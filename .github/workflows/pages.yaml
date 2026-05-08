@@ -5,8 +5,12 @@ on:
     branches:
       - main
     paths:
-      - "index.html"
-      - "assets/**"
+      - "docs/**"
+      - "src/**"
+      - "static/**"
+      - "package.json"
+      - "docusaurus.config.js"
+      - "sidebars.js"
       - "CNAME"
       - ".github/workflows/pages.yaml"
   repository_dispatch:
@@ -39,25 +43,26 @@ jobs:
           ref: main
           path: projects/soc-ai-relay
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
         with:
-          python-version: "3.x"
+          node-version: 20
+          cache: npm
+          cache-dependency-path: docs-hub/package.json
 
-      - name: Install documentation dependencies
-        run: pip install mkdocs-material
-
-      - name: Build SOC AI Relay docs
-        working-directory: projects/soc-ai-relay
-        run: mkdocs build --strict --site-dir ../../site/soc-ai-relay
-
-      - name: Copy docs hub home page
+      - name: Copy project documentation
         run: |
-          cp docs-hub/index.html site/index.html
-          cp docs-hub/CNAME site/CNAME
-          if [ -d docs-hub/assets ]; then
-            cp -R docs-hub/assets site/assets
-          fi
+          rm -rf docs-hub/docs/soc-ai-relay
+          mkdir -p docs-hub/docs/soc-ai-relay
+          cp -R projects/soc-ai-relay/docs/. docs-hub/docs/soc-ai-relay/
+
+      - name: Install dependencies
+        working-directory: docs-hub
+        run: npm install
+
+      - name: Build Docusaurus site
+        working-directory: docs-hub
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -65,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: docs-hub/build
 
   deploy:
     environment:
