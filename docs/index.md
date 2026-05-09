@@ -6,4 +6,4 @@ Documentação oficial da Hellnet Foundation.
 - Deploy: GitHub Actions
 - Tema: Material for MkDocs
 - Estilo: dark, minimal, direto
-- Projeto: `/soc-ai-relay`
+- Projeto relacionado: `/soc-ai-relay`
