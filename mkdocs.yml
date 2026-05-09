@@ -1,5 +1,7 @@
 site_name: Hellnet Docs
 site_url: https://docs.hellnet.com.br/
+repo_url: https://github.com/hellnet-foundation/hellnet-foundation.github.io
+repo_name: hellnet-foundation.github.io
 
 theme:
   name: material
