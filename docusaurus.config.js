@@ -1,7 +1,6 @@
 const config = {
   title: 'Hellnet Docs',
   tagline: 'Documentation hub for Hellnet projects, labs, services, and platform tooling.',
-  favicon: 'img/favicon.ico',
 
   url: 'https://docs.hellnet.com.br',
   baseUrl: '/',
