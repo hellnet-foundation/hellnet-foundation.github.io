@@ -21,11 +21,6 @@ markdown_extensions:
 
 nav:
   - Início: index.md
-  - Operação:
-      - Infra: infra.md
-      - Runbooks: runbooks.md
-  - Decisões:
-      - ADRs: adr/index.md
 
 extra:
   generator: false
